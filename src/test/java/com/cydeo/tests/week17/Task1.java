@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Task1 {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
 //        TC001 As a user I should be able to login with valid credentials
 //                *
@@ -22,7 +22,23 @@ public class Task1 {
         driver.manage().window().maximize();
         driver.get("https://vytrack.com/");
         driver.findElement(By.cssSelector("#top-menu #menu-item-849")).click();
+
+
+        //HOMEWORK CREATE A LOGIN METHOD
+        //login(username, password......)
+
         driver.findElement(By.id("prependedInput")).sendKeys("User1");
         driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123");
+        driver.findElement(By.id("_submit")).click();
+        Thread.sleep(5000);
+        String title = driver.getTitle();
+
+        if(title.equals("Dashboard")){
+            System.out.println("PASS");
+        }else{
+            System.out.println("FAIL");
+        }
+
+        driver.quit();
     }
 }
